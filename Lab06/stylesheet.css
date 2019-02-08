@@ -1,0 +1,14 @@
+#floatingForm{
+    width: 300; height: 160; top: 60px; left:320px;
+    position: absolute;
+    border: dashed blue;
+}
+
+#controllerForm{
+    width: 300px;
+    height: 50px;
+    position: absolute;
+    top: 250px;
+    left: 320px;
+    border: solid blue;
+}

@@ -19,6 +19,7 @@ function redirect(){
 
 function browser(){
     document.getElementById("txtText3").value = navigator.appName;
+    document.getAnimations.apply = navigator.appName;
 }
 
 function controlForm(opt){

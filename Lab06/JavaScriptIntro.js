@@ -18,6 +18,25 @@ function redirect(){
 }
 
 function browser(){
-    
     document.getElementById("txtText3").value = navigator.appName;
+}
+
+function controlForm(opt){
+    startLeft = 320;
+    
+    
+    if(opt==1){
+        startLeft-=50
+        document.all.floatingForm.style.left=startLeft + "px";
+    }
+    if (opt==2){
+        document.all.floatingForm.style.visibility="visible"
+    }
+    if (opt==3){
+        document.all.floatingForm.style.visibility="hidden";
+    }
+    if (opt==4){
+        startLeft += 50;
+        document.all.floatingForm.style.left = startLeft + "px";
+    }
 }

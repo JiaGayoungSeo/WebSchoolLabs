@@ -1,0 +1,18 @@
+.black{
+    padding-bottom: 100%;
+    background-color: black;
+}
+
+.white{
+    padding-bottom: 100%;
+    background-color: white;
+}
+
+.move{
+    padding-top:20px;
+}
+
+.header{
+    padding-top: 20px;
+    padding-bottom: 30px;
+}

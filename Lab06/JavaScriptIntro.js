@@ -8,6 +8,9 @@ function isEmpty(){
 
 function redirect(){
     var url = document.getElementById("txtText2").value;
+    if(url==""){
+        url = "http://www.google.com";
+    }
     if(url.includes('http')==false){
         url = 'http://' + document.getElementById("txtText2").value;
     }

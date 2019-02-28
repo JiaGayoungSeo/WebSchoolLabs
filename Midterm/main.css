@@ -1,0 +1,30 @@
+#header{
+    background-color: aquamarine;
+}
+#header h1{
+    color: red;
+}
+#SocialMedia{
+    background-color: lightblue;    
+}
+#SocialMedia img{
+    width: 80%;
+    margin-top: 25px;
+    margin-bottom: 25px;
+}
+#SocialMedia h2{
+    color: darkblue;
+}
+ul{
+    list-style: circle;
+}
+ul li a:hover{
+    color: red;
+}
+
+#AboutUs{
+    background-color: lightsteelblue;
+}
+#AboutUs h1, h2{
+    color: blueviolet;
+}

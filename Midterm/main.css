@@ -28,3 +28,14 @@ ul li a:hover{
 #AboutUs h1, h2{
     color: blueviolet;
 }
+table{
+    height: 300px;
+    border: 1px solid;
+    border-collapse: collapse;
+
+}
+table td{
+    text-align: center;
+    border-collapse: collapse;
+    border: solid 1px;
+}

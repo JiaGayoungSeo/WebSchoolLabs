@@ -1,5 +1,6 @@
 #header{
     background-color: aquamarine;
+    width: 100%;
 }
 #header h1{
     color: red;
@@ -30,12 +31,12 @@ ul li a:hover{
 }
 table{
     height: 300px;
-    border: 1px solid;
+    border: 1.5px solid;
     border-collapse: collapse;
-
+    
 }
 table td{
     text-align: center;
     border-collapse: collapse;
-    border: solid 1px;
+    border: solid 1.5px;
 }

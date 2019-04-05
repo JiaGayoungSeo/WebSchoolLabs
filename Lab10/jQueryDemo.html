@@ -1,17 +1,88 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+	<meta charset="utf-8" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
 <body>
-    <form>
-        <label for="firstName">First Name</label>
-        <input type="text" name="fistName" id="firstName"></input>
+    <main id="contactPage">
+        <form>
+            <div class="formRow">
+                <label for="firstName">First name</label>
+                <input class="validated" autofocus autocomplete="off" name="firstname" id="firstname" type="text" pattern=".{5,100}" required />
+            </div>
+            <div class="formRow">
+                <label for="Address">Address</label>
+                <input class="validated" name="Address" id="Address" type="text" required/>
+            </div>
+            <div class="formRow">
+                <label for="email">Email address</label>
+                <input class="validated" name="email" id="email" type="email" required />
+            </div>
+            <input id="Button1" type="submit" value="submit" />
+        </form>
+        <br /><br />
+        <table>
+            <tr>
+                <td>First Name</td>
+                <td>Address</td>
+                <td>Email</td>
+            </tr>
+        </table>
+    </main>
 
-    </form>
-    
+    <script>
+    $(document).ready(function(){
+    var mainElement = document.getElementById('contactPage');
+
+    $(mainElement).find('form input[type="submit"]').click(
+        function(evt) {
+  
+            evt.preventDefault();
+   
+            if ($(evt.target).parents('form')[0].checkValidity()) {
+
+                var contact = serializeForm();
+                var html = '<tr><td>' + contact.firstname + '</td>' +
+                           '<td>' + contact.Address + '</td>' +
+                           '<td>' + contact.email + '</td></tr>'
+
+
+                $(mainElement).find('table tbody').append(html);
+                $(mainElement).find('form :input[name]').val('')
+            }
+        });
+
+    function serializeForm() {
+        var inputFields = $(mainElement).find('form :input');
+        
+        var result = {};
+        $.each(inputFields, function (index, item) {
+     
+            var name = $(item).attr('name');
+            var value = $(item).val();
+            if (name) {
+                result[name] = value;
+            }
+        });
+        return result;
+    }
+
+    });
+
+            function serializeForm() {
+            var inputFields = $(mainElement).find('form :input');
+            var result = {};
+            $.each(inputFields, function(index, value) {
+                 if ($(value).attr('name')) {
+                     result[$(value).attr('name')] = $(value).val();
+                 }
+            });
+            return result;
+        }
+
+
+    </script>
 </body>
 </html>

@@ -4,28 +4,29 @@
          <meta charset="utf-8">     
          <title>Contacts</title>
          <link rel="stylesheet" type="text/css" href="contacts.css">  
+		 
 </head>
 <body>
 	<header>Contacts</header>
 	<main id="contactScreen">
 	<section id="contactDetails"><h2>Contact details</h2>
-	<form method="post"> 
+	<form method="post">
 		<div class="formRow">
 			<label for="contactName">Contact name</label>
-			<input autofocus autocomplete="off" name="contactName" id="contactName" type="text"/>
+			<input  class="validated" autofocus autocomplete="off" name="contactName" id="contactName" type="text" pattern=".{5,100}" required/>
 		</div>
 		<div class="formRow">
 			<label for="phoneNumber">Phone number</label>
-			<input placeholder="Include area code" name="phoneNumber" id="phoneNumber" type="tel" required/>
+			<input class= "validated" placeholder="000-000-0000" required pattern="^\d{3}-\d{3}-\d{4}$" name="phoneNumber" id="phoneNumber" type="tel"/>
 		</div>
 		<div class="formRow">
 			<label for="emailAddress">Email address</label>
-			<input name="emailAddress" id="emailAddress" type="email" required/>
+			<input class="validated" name="emailAddress" id="emailAddress" type="email" required/>
 		</div>
 		<div class="formRow">
 			<label for="companyName">Company name</label>
-			<select name="companyName" id="companyName" required>
-				<option value="-1">Please select</option>
+			<select class="validated" name="companyName" id="companyName" required>
+				<option value="">Please select</option><!--Set this to a blank string to make it invalid-->
 				<option value="1">ABC Incorporated</option>
 				<option value="2">XZY Ltd</option>
 				<option value="3">ACME International</option>
@@ -79,6 +80,7 @@
 	</section>
 	</main>
 	<footer>Copyright 2014</footer>
+	<script src="contacts.js"></script>
 </body>
 </html>
 

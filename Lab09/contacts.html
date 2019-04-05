@@ -9,22 +9,22 @@
 	<header>Contacts</header>
 	<main id="contactScreen">
 	<section id="contactDetails"><h2>Contact details</h2>
-	<form method="post">
+	<form method="post"> 
 		<div class="formRow">
 			<label for="contactName">Contact name</label>
 			<input autofocus autocomplete="off" name="contactName" id="contactName" type="text"/>
 		</div>
 		<div class="formRow">
 			<label for="phoneNumber">Phone number</label>
-			<input placeholder="Include area code" name="phoneNumber" id="phoneNumber" type="tel"/>
+			<input placeholder="Include area code" name="phoneNumber" id="phoneNumber" type="tel" required/>
 		</div>
 		<div class="formRow">
 			<label for="emailAddress">Email address</label>
-			<input name="emailAddress" id="emailAddress" type="email"/>
+			<input name="emailAddress" id="emailAddress" type="email" required/>
 		</div>
 		<div class="formRow">
 			<label for="companyName">Company name</label>
-			<select name="companyName" id="companyName">
+			<select name="companyName" id="companyName" required>
 				<option value="-1">Please select</option>
 				<option value="1">ABC Incorporated</option>
 				<option value="2">XZY Ltd</option>

@@ -1,42 +1,84 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Page Title</title>
+    <title></title>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
-   
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+
+    <link href="StyleSheet.css" rel="stylesheet" />
+    
+
 </head>
-
 <body>
-    <h3>Kitchen Calculator</h3>
-    <form action="#" method="GET">
-        1. Select your product type:
-        <select name="ProductsSelect" id="mySelect" onchange="showPicture()">
-            <option value="0">--Select Your Product--</option>
-            <option value="base">Base Cabinets</option>
-            <option value="Wall">Wall Cabinets</option>
-            <option value="counters">Counter Tops</option>
-        </select>
+    <div id="outer">
+        <h1>Kitchen Calculator</h1>
+        <div class="row">
+            <div class="form-group col-12 col-sm-8">
+                <div class="row">
+                    <label class="control-label col-12 col-sm-4">1. Select your Product type:</label>
+                    <div class="col-12 col-sm-3">
+                        <select id="nameOfCabinet" name="nameOfCabinets" onclick="showPics()" class="checkValid" required>
+                            <option value="">--Select Your Product--</option>
+                            <option value="0">Wall Cabinets</option>
+                            <option value="1">Base Cabinets</option>
+                            <option value="2">Counter Tops</option>
 
-        <p id="img_out"></p>
+                        </select>
+                    </div>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="control-label col-12 col-sm-4" >2. Select the Product line:</label>
+                    <form class="col-12 col-sm-3">
+                            <input type="radio" name="kitchenStyle" value=0 onclick="changeBorder(1)" checked>Empire Standard<br>
+                            <input type="radio" name="kitchenStyle" value=1 onclick="changeBorder(2)">Kitchen Elite<br>
+                            <input type="radio" name="kitchenStyle" value=2 onclick="changeBorder(3)">Gold Star Plus<br>
+                    </form>
+                </div>
+                <br>
+                <div class="row">
+                    <label class="control-label col-12 col-sm-4">3. Enter the linear footage:</label>
+                    <input type="number" class="form-control col-12 col-sm-3 checkValid" id="footage" min="3" max="50" required placeholder="between 3 to 50 feet.">
+                </div>
+                <br>
+                <div class="row" id="counterTop">
+                    <label class="control-label col-12 col-sm-4">4. If cabinets, how many corner units?</label>
+                    <input type="number" class="form-control col-12 col-sm-3 checkValid" id="numberOfUnits" min="0" max="5" required placeholder="from 0 to 5">
+                </div>
+                <br>
+                <div class="row" id="calculateDiv">
+                    <p class="col-12 col-sm-7">
+                        Click the
+                        <input type="button" value="Caculate" onclick="Calculate()">
+                        button
+                    </p>
+                </div>
 
-        <br/> 
-        
-        2. Select the product line:</br>
-        <input type="radio" name="productLine" value="EmpireStandard"> Empire EmpireStandard</br>
-        <input type="radio" name="productLine" value="KitchenElite"> Kitchen Elite</br>
-        <input type="radio" name="productLine" value="Gold Star Plus"> Gold Star Plus</br>
-        3. Enter the linear footage <input type="text" name="linearFootage"><br/> 4. If cabinets, how many corner units? <input type="text" name="number"><br/>
-        <p>Click the <input type="button" value="calculation" onclick="calculate()"> button </p>
-        5. And see the results: <input type="text" name="result">
+                <div class="row">
+                    <label class="control-label col-12 col-sm-4">5. And see the results: </label>
+                    <input type="number" class="form-control col-12 col-sm-3" id="results">
+                </div>
+
+            </div>
+
+            <div class="col-12 col-sm-4">
+                <p  id="showPic"></p>
+                <br>
+                <p id="showPic2"></p>
+            </div>
+        </div>
+    </div>
 
 
-
-    </form>
-    <script src="Lab07\js-KitchenCalculator.js"></script>
 </body>
-
 </html>
+<script src="js-KitchenCalculator.js"></script>

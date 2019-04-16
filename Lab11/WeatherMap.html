@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <form>
+        <div class="formRow">
+            <label>Search by: </label>
+        </div>
+        <div class="formRow">
+            <input type="radio" id="Postal1" name="searchBy" value="1" checked> Postal Code <br />
+            <input type="radio" id="City1" name="searchBy" value="2"> City Name <br />
+            <input type="radio" id="Lat/Long1" name="searchBy" value="3"> Latitude / Longitude <br />
+        </div>
+        <div class="formRow" id="City">
+            <br />
+            <label for="CityName">City Name: </label>
+            <input class="validated" name="CityName" id="CityName" type="text"/>
+            <label for="CountryCode">Country Code: </label>
+            <input class="validated" name="CountryCode" id="CountryCode" type="text"/>
+        </div>
+        <div class="formRow" id="Postal">
+            <br />
+            <label for="PostalCode">Postal Code: </label>
+            <input class="validated" name="PostalCode" id="PostalCode" type="text"/>
+            <label for="CountryCode">Country Code: </label>
+            <input class="validated" name="CountryCode" id="CountryCode" type="text"/>
+        </div>
+        <div class="formRow" id="Lat/Long">
+            <br />
+            <label for="Latitude">Latitude: </label>
+            <input class="validated" name="Latitude" id="Latitude" type="text" required />
+            <label for="Longtitude">Longtitude: </label>
+            <input class="validated" name="Longtitude" id="Longtitude" type="text" required />
+        </div>
+        <div class="formRow">
+            <br />
+            <input id="SearchButton" type="button" value="Search" />
+        </div>
+
+        
+    </form>
+    <h2>Search Results:</h2>
+    <h3>Raw Result Text</h3>
+    <p id="ResponseText"></p>
+    <h3>Parsed Results</h3>
+    <p id="SearchResults"></p>
+    <script>
+
+        $("#City").hide();
+        $("#Postal").hide();
+        $("#Lat/Long").hide();
+
+        $(document).ready(function () {
+
+            $('input:radio').change(
+                
+            function () {
+
+                $("#City").hide();
+                $("#Postal").hide();
+                $("#Lat/Long").hide();
+                 if ($(this).val() == '1') {
+                        $("#Postal").show();
+                 } else if ($(this).val() == '2') {
+                     $("#City").show();
+                 } else if ($(this).val() == '3') {
+                     $("#Lat/Long").show();
+                 }
+            }   
+            );
+
+            $("#SearchButton").click(
+                function (evt) {
+
+                    var xhttp = new XMLHttpRequest();
+
+                    
+                    xhttp.onreadystatechange = function () {
+                       
+                        if (this.readyState == 4 && this.status == 200) {
+
+                            var SearchResponse = this.responseText;
+                            document.getElementById("ResponseText").innerHTML = SearchResponse;
+
+                            var obj = JSON.parse(SearchResponse);
+
+                            var city_name = obj["name"];
+                            var country_name = obj["sys"]["country"];
+                            var weather_description = obj["weather"][0]["description"];
+                            var temp = obj["main"]["temp"];
+                            var pressure = obj["main"]["pressure"];
+                            var wind_speed = obj["wind"]["speed"];         
+
+                            var SearchResultsHTML = "City: " + city_name + "<br />" +
+                                                    "Country: " + country_name + "<br />" +
+                                                    "Weather: " + weather_description + "<br />" +
+                                                    "Temperature: " + temp + "<br />" +
+                                                    "Pressure: " + pressure + "<br />" +
+                                                    "Wind Speed: " + wind_speed + "<br />";
+
+                            $("#SearchResults").html(SearchResultsHTML);
+                        };
+                    }
+
+                    var CityName = $("#CityName").val();
+                    var CountryCode = $("#CountryCode").val();
+                    var Zip = $("#PostalCode").val();
+                    var Latitude1 = $("#Latitude").val();
+                    var Longtitude1 = $("#Longtitude").val();
+
+                
+                    if (document.getElementById('City1').checked) {
+                     
+                        var apiKey = "f37a9f3c3f3e9855c9e2e54ce9565bf8";
+                        SearchString = "http://api.openweathermap.org/data/2.5/weather" +
+                                       "?q=" + CityName + "," + CountryCode +
+                                       "&APPID=" + apiKey;
+                    } else if (document.getElementById('Postal1').checked) {
+                        var apiKey = "f37a9f3c3f3e9855c9e2e54ce9565bf8";
+                        SearchString = "http://api.openweathermap.org/data/2.5/weather" +
+                                       "?zip=" + Zip + "," + CountryCode +
+                                       "&APPID=" + apiKey;
+                    } else if (document.getElementById('Lat/Long1').checked) {
+                        var apiKey = "f37a9f3c3f3e9855c9e2e54ce9565bf8";
+                        SearchString = "http://api.openweathermap.org/data/2.5/weather" +
+                                       "?lat=" + Latitude1 + "&lon=" + Longtitude1 +
+                                       "&APPID=" + apiKey;
+                    }
+
+                    xhttp.open("GET", SearchString, true);
+                    xhttp.send(); 
+                });
+        });
+
+    </script>
+</body>
+
+</html>

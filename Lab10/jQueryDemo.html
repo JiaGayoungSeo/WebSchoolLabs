@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title></title>
-	<meta charset="utf-8" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<body>
-    <main id="contactPage">
+
+<contactPage>
+    <contactPage id="contactPage">
         <form>
             <div class="formRow">
                 <label for="firstName">First name</label>
@@ -20,7 +20,7 @@
                 <label for="email">Email address</label>
                 <input class="validated" name="email" id="email" type="email" required />
             </div>
-            <input id="Button1" type="submit" value="submit" />
+            <input id="Button" type="submit" value="submit" />
         </form>
         <br /><br />
         <table>
@@ -30,59 +30,59 @@
                 <td>Email</td>
             </tr>
         </table>
-    </main>
+    </contactPage>
 
     <script>
-    $(document).ready(function(){
-    var mainElement = document.getElementById('contactPage');
+        $(document).ready(function() {
+            var contactPage = document.getElementById('contactPage');
 
-    $(mainElement).find('form input[type="submit"]').click(
-        function(evt) {
-  
-            evt.preventDefault();
-   
-            if ($(evt.target).parents('form')[0].checkValidity()) {
+            $(contactPage).find('form input[type="submit"]').click(
+                function(evt) {
 
-                var contact = serializeForm();
-                var html = '<tr><td>' + contact.firstname + '</td>' +
-                           '<td>' + contact.Address + '</td>' +
-                           '<td>' + contact.email + '</td></tr>'
+                    evt.preventDefault();
+
+                    if ($(evt.target).parents('form')[0].checkValidity()) {
+
+                        var contact = serializeForm();
+                        var html = '<tr><td>' + contact.firstname + '</td>' +
+                            '<td>' + contact.Address + '</td>' +
+                            '<td>' + contact.email + '</td></tr>'
 
 
-                $(mainElement).find('table tbody').append(html);
-                $(mainElement).find('form :input[name]').val('')
-            }
-        });
-
-    function serializeForm() {
-        var inputFields = $(mainElement).find('form :input');
-        
-        var result = {};
-        $.each(inputFields, function (index, item) {
-     
-            var name = $(item).attr('name');
-            var value = $(item).val();
-            if (name) {
-                result[name] = value;
-            }
-        });
-        return result;
-    }
-
-    });
+                        $(contactPage).find('table tcontactPage').append(html);
+                        $(contactPage).find('form :input[name]').val('')
+                    }
+                });
 
             function serializeForm() {
-            var inputFields = $(mainElement).find('form :input');
-            var result = {};
-            $.each(inputFields, function(index, value) {
-                 if ($(value).attr('name')) {
-                     result[$(value).attr('name')] = $(value).val();
-                 }
-            });
-            return result;
-        }
+                var input = $(contactPage).find('form :input');
+
+                var result = {};
+                $.each(input, function(index, item) {
+
+                    var name = $(item).attr('name');
+                    var value = $(item).val();
+                    if (name) {
+                        result[name] = value;
+                    }
+                });
+                return result;
+            }
+
+            function serializeForm() {
+                var input = $(contactPage).find('form :input');
+                var result = {};
+                $.each(input, function(index, value) {
+                    if ($(value).attr('name')) {
+                        result[$(value).attr('name')] = $(value).val();
+                    }
+                });
+                return result;
+            }
 
 
+        });
     </script>
-</body>
+</contactPage>
+
 </html>

@@ -1,59 +1,112 @@
-var currentIndex;
-var selectValue;
-
-function showPicture() {
-    var selectBox = document.getElementById("mySelect");
-    currentIndex = selectBox.selectedIndex;
-    selectValue = selectBox.options[currentIndex].value;
-    if (selectValue == "base") {
-        //document.write(currentIndex);
-        document.getElementById("img_out").innerHTML = "<img src='base.jpg'>";
-    }
-    if (selectValue == "wall") {
-        document.getElementById("img_out").innerHTML = "<img src ='wall.jpg'>";
-    }
-    if (selectValue == "counters") {
-        document.getElementById("img_out").innerHTML = "<img src ='counters.jpg'>";
-    }
+function changeBorder(opt) {
+    if (opt == 1) { document.getElementById("outer").style.border = "solid blue" }
+    if (opt == 2) { document.getElementById("outer").style.border = "solid red" }
+    if (opt == 3) { document.getElementById("outer").style.border = "solid green" }  
 }
 
 
-
-function getTotalPrice() {
-
-    var selectBox = document.getElementById("mySelect");
-    var row = selectBox.selectedIndex - 1;
-
-    var col = 0;
-
-    var priceArray = [
-        [99.99, 179.00, 200.99],
-        [69.99, 79.00, 99.99],
-        [30.99, 189.99, 212.99],
-        [50.99, 79.99, 89.99]
-    ]
-
-    var linearFootage = document.getElementsByName("linearFootage");
-    var numOfUnit = document.getElementsByName("number");
-
-    var empireButton = document.getElementById("EmpireStandard");
-    var kitchenButton = document.getElementById("KitchenElite");
-    var goldButton = document.getElementById("GoldStarPlus");
-
-    if (empireButton.checked == true) {
-        col = 0;
+function showPics() {
+    var x = document.getElementById("nameOfCabinet")
+    var currentIndex = x.selectedIndex
+    if (x.options[currentIndex].value == "5") {
+        document.getElementById("counterTop").style.visibility = "visible"
+        document.getElementById("showPic2").style.visibility = "hidden"
+        document.getElementById("showPic").style.visibility = "hidden"
     }
-    if (kitchenButton.checked == true) {
-        col = 1;
+    if (x.options[currentIndex].value == "0") {
+        document.getElementById("showPic").innerHTML = "<img src='wall.jpg'>"
+        document.getElementById("showPic2").innerHTML = "<img src='corners.jpg'>"
+        document.getElementById("showPic").style.visibility = "visible"
+        document.getElementById("counterTop").style.visibility = "visible"
+        document.getElementById("showPic2").style.visibility = "visible"
     }
-    if (goldButton == true) {
-        col = 2;
+    if (x.options[currentIndex].value == "1") {
+        document.getElementById("showPic").innerHTML = "<img src='base.jpg'>"
+        document.getElementById("showPic2").innerHTML = "<img src='corners.jpg'>"
+        document.getElementById("counterTop").style.visibility = "visible"
+        document.getElementById("showPic").style.visibility = "visible"
+        document.getElementById("showPic2").style.visibility = "visible"
+    }
+    if (x.options[currentIndex].value == "2") {
+        document.getElementById("showPic").innerHTML = "<img src='counters.jpg'>"
+        document.getElementById("counterTop").style.visibility="hidden"
+        document.getElementById("showPic").style.visibility = "visible"
+        document.getElementById("showPic2").style.visibility = "hidden"
     }
 
-    var lookupPrice = priceArray[row][col];
+}
 
-    var totalPrice = linearFootage * numOfUnit * lookupPrice;
 
-    document.getElementById("price").value = totalPrice;
+var priceTable =[
+    [99.99,179,200.99],
+    [69.99,79,99.99],
+    [30.99,189.99,212.99],
+    [50.99,79.99,89.99]
+]
+
+var price = 0
+var isValidData = false
+
+function Calculate(){
+    var numOfFoot = document.getElementById("footage").value
+    var numOfunit = document.getElementById("numberOfUnits").value
+    var x = document.getElementById("nameOfCabinet")
+    var currentIndex = x.selectedIndex
+    var productType = x.options[currentIndex].value
+
+ 
+    var kitchenStyle = document.forms[0]
+    var stylePrice = 5
+   
+    for (var i = 0; i < kitchenStyle.length; i++){
+        if (kitchenStyle[i].checked) {
+            stylePrice = kitchenStyle[i].value
+        }
+    }
+    if (productType == "") {
+        alert("Please choose a product type!")
+        return
+    }
+    if (stylePrice == 5) {
+        alert("Please choose a product line!")
+        return
+    }
+    
+    
+    if (numOfFoot == "" || numOfFoot > 50 || numOfFoot<3) {
+        alert("Linear footage must be between 3 to 50 feet. Please enter a valid footage number!")
+        return
+    }
+    if(productType !=2){
+        if (numOfunit == "" || numOfunit < 0 || numOfunit > 5) {
+            alert("The number of Corner Units must be from 0 to 5. Please enter a valid unit number!")
+            return
+        }
+    }
+    if(stylePrice != 5 &&
+        numOfFoot <=50 && numOfFoot >=3 && 
+        numOfunit <=5 && numOfunit >=0)
+        {
+            isValidData = true
+        }
+    
+    if(isValidData= true && 
+       productType ==0){
+        price = priceTable[productType][stylePrice]*numOfFoot + priceTable[3][stylePrice]*numOfunit
+        document.getElementById("results").value = price
+       }
+       if(isValidData= true && 
+        productType ==1){
+         price = priceTable[productType][stylePrice]*numOfFoot + priceTable[3][stylePrice]*numOfunit
+         document.getElementById("results").value = price
+        }
+      if(isValidData = true &&
+        productType ==2){
+         price = priceTable[productType][stylePrice]*numOfFoot
+         document.getElementById("results").value = price
+        }
+    else if(isValidData=false){
+        alert("Please input a valid data!")
+    }
 
 }

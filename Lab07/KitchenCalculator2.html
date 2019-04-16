@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css">
+
+</head>
+
+<body>
+    <h3>Kitchen Calculator</h3>
+    <form action="#" method="GET">
+        1. Select your product type:
+        <select name="ProductsSelect" id="mySelect" onchange="showPicture()">
+            <option value="0">--Select Your Product--</option>
+            <option value="base">Base Cabinets</option>
+            <option value="Wall">Wall Cabinets</option>
+            <option value="counters">Counter Tops</option>
+        </select>
+
+        <p id="img_out"></p>
+
+        <br/> 2. Select the product line:</br>
+        <input type="radio" name="productLine" value="EmpireStandard"> Empire EmpireStandard</br>
+        <input type="radio" name="productLine" value="KitchenElite"> Kitchen Elite</br>
+        <input type="radio" name="productLine" value="Gold Star Plus"> Gold Star Plus</br>
+        3. Enter the linear footage <input type="text" name="linearFootage"><br/> 4. If cabinets, how many corner units? <input type="text" name="number"><br/>
+        <p>Click the <input type="button" value="calculation" onclick="calculate()"> button </p>
+        5. And see the results: <input type="text" name="result">
+
+
+
+    </form>
+    <script src="js-KitchenCalculator.js"></script>
+</body>
+
+</html>

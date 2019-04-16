@@ -49,7 +49,7 @@ function checkInput(e) {
                 InputBox.setCustomValidity("Value is missing");
             }
             if (InputBox.validity.typeMismatch) {
-                InputBox.setCustomValidity(" Value is not a number (type mismatch)");
+                InputBox.setCustomValidity(" Value is not a valid email (type mismatch)");
             }
         }
     }
